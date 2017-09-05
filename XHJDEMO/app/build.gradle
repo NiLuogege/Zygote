@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "com.tmholter.pediatrics.xhjdemo"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+/***** greenDao****/
+apply plugin: 'org.greenrobot.greendao'
+//buildscript {  //这个迁移到了 顶层build.gradle
+//    repositories {
+//        jcenter()
+//        mavenCentral()
+//    }
+//    dependencies {
+//        classpath 'com.android.tools.build:gradle:2.3.0'
+//        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
+//    }
+//}
+
+greendao {
+    schemaVersion 1
+    daoPackage 'com.example.well.ndemo.net.rxretrofit.gen'
+    targetGenDir 'src/main/java'
+}
+/** ****************************/
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    compile 'com.android.support:design:26.0.0-alpha1'
+
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+//    compile project(':magicindicator')
+
+    /*greenDao*/
+    compile 'org.greenrobot:greendao:3.2.0'
+
+    compile 'org.apache.httpcomponents:httpcore:4.4.4'
+
+    compile 'io.reactivex:rxjava:1.1.7'
+    compile 'io.reactivex:rxandroid:1.2.1'
+
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+
+    //easyPermission
+    compile 'pub.devrel:easypermissions:1.0.0'
+
+}
