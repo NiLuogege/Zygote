@@ -12,7 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.tmholter.pediatrics.xhjdemo.R;
+import com.tmholter.pediatrics.xhjdemo.common.view.view.banner.CarouselFigureView;
+import com.tmholter.pediatrics.xhjdemo.common.view.view.banner.DepthPageTransformer;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -127,6 +130,9 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @Bind(R.id.rl)
         RelativeLayout rl;
 
+        @Bind(R.id.cfv)
+        CarouselFigureView cfv;
+
         public HeaderViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -139,6 +145,16 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             vp.setOffscreenPageLimit(3);
             vp.setScaleX(0.8f);
             vp.setScaleY(0.8f);
+
+            ArrayList<String> imagesRes = new ArrayList();
+            imagesRes.add("http://pic.sc.chinaz.com/files/pic/pic9/201604/apic20400.jpg");
+            imagesRes.add("http://pics.sc.chinaz.com/files/pic/pic9/201602/apic19022.jpg");
+            imagesRes.add("http://pics.sc.chinaz.com/files/pic/pic9/201603/fpic430.jpg");
+            imagesRes.add("http://pics.sc.chinaz.com/files/pic/pic9/201605/apic20631.jpg");
+
+            cfv.setURL(imagesRes);
+            cfv.setViewPagerSwitchStyle(new DepthPageTransformer());//这是切换模式
+            cfv.setViewPagerSwitchSpeed(200);//设置切换速率
         }
     }
 
@@ -184,7 +200,7 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             mNoScrollViewPager.setAdapter(new Vp_3Adaper(context));
 
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mNoScrollViewPager.getLayoutParams();
-            layoutParams.height=3000;
+            layoutParams.height = 3000;
             mNoScrollViewPager.setLayoutParams(layoutParams);
         }
 

@@ -12,4 +12,10 @@
         android:background="@color/colorAccent"
         android:src="@mipmap/ic_launcher"/>
 
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:text="tv"
+        android:layout_height="wrap_content"/>
+
 </RelativeLayout>
