@@ -7,25 +7,34 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.tmholter.pediatrics.xhjdemo.R;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
 
+    @Bind(R.id.indicator)
+    SimpleViewPagerIndicator mIndicator;
+
     private static final int RC_CAMERA_AND_WIFI = 0x01;//这个就是RequestCode
     private RecyclerView rv;
     private MainActivity context;
+    private String[] mTitles = new String[]{"简介", "评价", "相关"};
+    private LinearLayoutManager mLinearLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         this.context = this;
 
@@ -33,7 +42,35 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
         RvAdapter rvAdapter = new RvAdapter(context);
         rv.setAdapter(rvAdapter);
-        rv.setLayoutManager(new LinearLayoutManager(context));
+        mLinearLayoutManager = new LinearLayoutManager(context);
+        rv.setLayoutManager(mLinearLayoutManager);
+        rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+//                View childAt = rv.getChildAt(3);
+                View childAt = mLinearLayoutManager.findViewByPosition(3);
+
+//                Log.e("MainActivity", "childAt:" + childAt+" viewByPosition="+viewByPosition);
+                if (childAt != null) {
+                    int top = childAt.getTop() + 80;//这里的80是因为在item_type_3中 全部商品这个textVie的高度设置为了80,如果真的要使用的话需要用dp 或者动态获取
+                    Log.e("MainActivity", "top:" + top);
+                    if (top <= 0) {
+                        mIndicator.setVisibility(View.VISIBLE);
+                    } else {
+                        mIndicator.setVisibility(View.GONE);
+                    }
+                }
+            }
+        });
+
+
+        mIndicator.setTitles(mTitles);
 
         requestCallPhonePermission();
 
