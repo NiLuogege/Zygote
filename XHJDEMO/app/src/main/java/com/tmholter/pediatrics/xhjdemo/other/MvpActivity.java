@@ -1,22 +1,21 @@
-package com.tmholter.pediatrics.xhjdemo.common.view.activity;
+package com.tmholter.pediatrics.xhjdemo.other;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tmholter.pediatrics.xhjdemo.R;
-import com.tmholter.pediatrics.xhjdemo.common.presentation.presenter.MVPPresenter;
-import com.tmholter.pediatrics.xhjdemo.common.presentation.presenter.impl.MVPPresenterImpl;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.adapter.recyclerview.wrapper.HeaderAndFooterWrapper;
 import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -27,7 +26,8 @@ import butterknife.ButterKnife;
  * email:luochen0519@foxmail.com
  */
 
-public class MvpActivity extends AppCompatActivity implements MVPPresenter.View {
+public class MvpActivity extends AppCompatActivity{
+
     @Bind(R.id.btn)
     Button btn;
     @Bind(R.id.tv)
@@ -35,7 +35,8 @@ public class MvpActivity extends AppCompatActivity implements MVPPresenter.View 
     @Bind(R.id.rv)
     RecyclerView rv;
 
-    private MVPPresenter.Presenter mMvpPresenter;
+    private List<String> mDatas = new ArrayList<>();
+    private LoadMoreWrapper mLoadMoreWrapper;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,30 +44,21 @@ public class MvpActivity extends AppCompatActivity implements MVPPresenter.View 
         setContentView(R.layout.layout_activity);
         ButterKnife.bind(this);
 
-        mMvpPresenter = new MVPPresenterImpl();
-        mMvpPresenter.attachView(this);
-        mMvpPresenter.initData();
 
-    }
+        initDatas();
 
-    @Override
-    public void showToast(String str) {
-        Toast.makeText(this, str, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void setAdapter(List<String> datas) {
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        CommonAdapter commonAdapter = new CommonAdapter<String>(this, R.layout.item_rv_mvp, datas) {
+
+        CommonAdapter commonAdapter=new CommonAdapter<String>(this,R.layout.item_rv_mvp,mDatas){
 
             @Override
             protected void convert(ViewHolder holder, String s, int position) {
-                holder.setText(R.id.tv, s + " : " + holder.getAdapterPosition() + " , " + holder.getLayoutPosition());
+                holder.setText(R.id.tv,s + " : " + holder.getAdapterPosition() + " , " + holder.getLayoutPosition());
             }
         };
 
-        HeaderAndFooterWrapper headerAndFooterWrapper = new HeaderAndFooterWrapper(commonAdapter);
+        HeaderAndFooterWrapper headerAndFooterWrapper=new  HeaderAndFooterWrapper(commonAdapter);
         TextView textView_1 = new TextView(this);
         textView_1.setText("header_1");
         headerAndFooterWrapper.addHeaderView(textView_1);
@@ -81,22 +73,30 @@ public class MvpActivity extends AppCompatActivity implements MVPPresenter.View 
         mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
+                new Handler().postDelayed(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        for (int i = 0; i < 10; i++)
+                        {
+                            mDatas.add("Add:" + i);
+                        }
+                        mLoadMoreWrapper.notifyDataSetChanged();
 
-                mMvpPresenter.loadMore();
+                    }
+                }, 3000);
             }
         });
 
         rv.setAdapter(mLoadMoreWrapper);
     }
 
-    @Override
-    public void notifyAdapter() {
-        mLoadMoreWrapper.notifyDataSetChanged();
+    private void initDatas()
+    {
+        for (int i = 'A'; i <= 'K'; i++)
+        {
+            mDatas.add((char) i + "");
+        }
     }
-
-
-    private LoadMoreWrapper mLoadMoreWrapper;
-
-
-
 }

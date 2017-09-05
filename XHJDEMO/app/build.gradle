@@ -72,4 +72,11 @@ dependencies {
     //easyPermission
     compile 'pub.devrel:easypermissions:1.0.0'
 
+    //BaseAdapter
+    compile 'com.zhy:base-rvadapter:3.0.3'
+
+    //Okhttp 和张宏祥的OKHttp封装
+    compile 'com.squareup.okhttp3:okhttp:3.3.1'
+    compile 'com.zhy:okhttputils:2.6.2'
+
 }
