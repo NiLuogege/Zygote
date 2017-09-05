@@ -10,10 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tmholter.pediatrics.xhjdemo.R;
+import com.tmholter.pediatrics.xhjdemo.common.presentation.adapter.MVPAdapter;
 import com.tmholter.pediatrics.xhjdemo.common.presentation.presenter.MVPPresenter;
 import com.tmholter.pediatrics.xhjdemo.common.presentation.presenter.impl.MVPPresenterImpl;
-import com.zhy.adapter.recyclerview.CommonAdapter;
-import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.adapter.recyclerview.wrapper.HeaderAndFooterWrapper;
 import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
 
@@ -58,13 +57,8 @@ public class MvpActivity extends AppCompatActivity implements MVPPresenter.View 
     public void setAdapter(List<String> datas) {
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        CommonAdapter commonAdapter = new CommonAdapter<String>(this, R.layout.item_rv_mvp, datas) {
 
-            @Override
-            protected void convert(ViewHolder holder, String s, int position) {
-                holder.setText(R.id.tv, s + " : " + holder.getAdapterPosition() + " , " + holder.getLayoutPosition());
-            }
-        };
+        MVPAdapter commonAdapter = new MVPAdapter(this, R.layout.item_rv_mvp, datas);
 
         HeaderAndFooterWrapper headerAndFooterWrapper = new HeaderAndFooterWrapper(commonAdapter);
         TextView textView_1 = new TextView(this);
