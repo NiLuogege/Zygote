@@ -1,13 +1,19 @@
 package com.tmholter.pediatrics.xhjdemo.other;
 
+import android.animation.Animator;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -16,8 +22,6 @@ import com.tmholter.pediatrics.xhjdemo.common.view.view.banner.CarouselFigureVie
 import com.tmholter.pediatrics.xhjdemo.common.view.view.banner.DepthPageTransformer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,8 +32,7 @@ import butterknife.ButterKnife;
  */
 
 public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private static final String[] CHANNELS = new String[]{"KITKAT", "NOUGAT", "DONUT"};
-    private List<String> mTitleDataList = Arrays.asList(CHANNELS);
+
 
     private static final int Type_header = 0;
     private static final int Type_1 = 1;
@@ -133,6 +136,9 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @Bind(R.id.cfv)
         CarouselFigureView cfv;
 
+        @Bind(R.id.tv_animation)
+        ImageView iv;
+
         public HeaderViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -155,6 +161,14 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             cfv.setURL(imagesRes);
             cfv.setViewPagerSwitchStyle(new DepthPageTransformer());//这是切换模式
             cfv.setViewPagerSwitchSpeed(200);//设置切换速率
+
+
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    createAnimation(iv).start();
+                }
+            });
         }
     }
 
@@ -221,5 +235,61 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             }
         };
+    }
+
+    private double radio;
+    private boolean isOn = true;//记录view的状态,第一次进去是可见的,记为true,不可见记为false
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public Animator createAnimation(final View v) {
+
+        Animator animator;
+        if (radio == 0L) {
+            radio = Math.sqrt(Math.pow(v.getWidth(), 2) + Math.pow(v.getHeight(), 2));
+        }
+        if (isOn) {
+            animator = ViewAnimationUtils.createCircularReveal(
+                    v,// 操作的视图
+                    0,// 动画开始的中心点X
+                    0,// 动画开始的中心点Y
+                    (float) radio,// 动画开始半径
+                    0);// 动画结束半径
+        } else {
+            animator = ViewAnimationUtils.createCircularReveal(
+                    v,// 操作的视图
+                    0,// 动画开始的中心点X
+                    0,// 动画开始的中心点Y
+                    0,// 动画开始半径
+                    (float) radio);// 动画结束半径
+        }
+        animator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                if (!isOn) {
+                    v.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (isOn) {
+                    v.setVisibility(View.INVISIBLE);
+                }
+                isOn = !isOn;
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        animator.setInterpolator(new DecelerateInterpolator());
+        animator.setDuration(500);
+        return animator;
     }
 }
