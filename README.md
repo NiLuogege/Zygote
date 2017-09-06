@@ -20,4 +20,4 @@ MVP架构,easyPermission,等的使用方法
 
 8.使用了XRecycleView 并配合使用BaseAdapter 实现列表,确实简单 在XRecycleViewActivity 中
 
-9.添加了下拉刷新的 ScollView PullToRefershScollViewActivity 中
+9.添加了下拉刷新的 ScollView PullToRefershScollViewActivity 中 ,PullScrollView 控件中 封装了 自动下拉刷新功能
