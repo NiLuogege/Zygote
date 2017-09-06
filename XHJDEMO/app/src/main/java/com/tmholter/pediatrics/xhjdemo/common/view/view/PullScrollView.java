@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
 /**
- * 只能有两个自Viwe
+ * 只能有两个子View或者ViewGroup
  * 第一个为 下拉刷新的view
  * 第二个为 NestedScollView
  */
