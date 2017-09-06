@@ -9,7 +9,7 @@ MVP架构,easyPermission,等的使用方法
 2.MVP方式使用RecycleView在MVPActivity中
 
 
-3.万能BaseAdapter也在MVPActivity中
+3.万能BaseAdapter也在MVPActivity中 可添加 头部局 脚布局
 
 4.无限轮播图的封装也在MainActivity中
 
