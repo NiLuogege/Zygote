@@ -49,7 +49,7 @@ public class MVPPresenterImpl implements MVPPresenter.Presenter{
         }
 
         OkHttpUtils.get()
-                .url("http://rap.taobao.org/mockjs/7569/invitation/getInvitations")
+                .url("https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png")
                 .build()
                 .execute(new BitmapCallback() {
                     @Override
