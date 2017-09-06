@@ -27,6 +27,14 @@ public class PullToRefershScollViewActivity extends AppCompatActivity {
         setContentView(R.layout.acitivity_pulltorefersh);
         ButterKnife.bind(this);
 
+        psv.autoRefresh();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                psv.stopRefresh();
+            }
+        },2000);
 
         psv.setOnRefreshListener(new PullScrollView.onRefreshListener() {
             @Override
@@ -40,4 +48,6 @@ public class PullToRefershScollViewActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

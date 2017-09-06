@@ -187,9 +187,11 @@ public class PullScrollView extends RelativeLayout {
 	private int getBottomViewHeight(){
 		return bottomView.getMeasuredHeight();
 	}
-	
-	
-	enum PullState{
+
+
+
+
+    enum PullState{
 		REST , ON_REFRESH 
 	}
 	
@@ -198,6 +200,20 @@ public class PullScrollView extends RelativeLayout {
 		state = PullState.REST; 
 		returnView();
 	}
+
+	/**
+	 * 刚进入 页面的时候 自动刷新
+	 */
+    public void autoRefresh() {
+        postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mScroller.startScroll(0, 0, 0, -bottomHeight , 100);
+                postInvalidate();
+            }
+        },100);
+
+    }
 	
 	private onRefreshListener onreListener ; 
 	
