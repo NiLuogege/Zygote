@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.view.View;
 
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -42,9 +43,13 @@ public class XRecycleViewActivity extends AppCompatActivity implements XRecycleV
 
         mGridLayoutManager = new GridLayoutManager(this, 3);
         xrv.setLayoutManager(mGridLayoutManager);
-//        xrv.setArrowImageView();//设置刷新箭头
-//        xrv.setFootView();//添加脚布局
-//        xrv.addHeaderView();//添加头部局
+        xrv.setArrowImageView(R.mipmap.ic_launcher);//设置刷新箭头
+//        View header = getLayoutInflater().inflate(R.layout.headerview_xrecycleview, null);
+//        View foot = getLayoutInflater().inflate(R.layout.footview_xrecycleview, null);//使用这种填充方法无法保证 布局 原本的大小
+        View header = getLayoutInflater().inflate(R.layout.headerview_xrecycleview, xrv, false);
+        View foot = getLayoutInflater().inflate(R.layout.footview_xrecycleview, xrv, false);//这种可以
+        xrv.addHeaderView(header);//添加头部局
+        xrv.setFootView(foot);//添加脚布局
         xrv.setLoadingMoreEnabled(true);//加载更多是否可用
         xrv.setPullRefreshEnabled(true);//升值下拉刷新是否可用
 
