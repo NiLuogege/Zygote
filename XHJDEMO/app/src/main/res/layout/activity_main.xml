@@ -7,7 +7,7 @@
     tools:context="com.tmholter.pediatrics.xhjdemo.other.MainActivity">
 
 
-    <android.support.v7.widget.RecyclerView
+    <com.tmholter.pediatrics.xhjdemo.common.view.view.BetterRecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

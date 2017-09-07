@@ -98,4 +98,12 @@ public class BetterRecyclerView extends RecyclerView {
                 return super.onInterceptTouchEvent(e);
         }
     }
+
+    //这个接口的作用是不允许父类打断这个onTouch 事件，
+    //那么我设置一个空的函数，override 父类的方法，就可以达到相反的效果
+    //自己感觉 没啥用
+//    @Override
+//    public void requestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+////        super.requestDisallowInterceptTouchEvent(disallowIntercept);
+//    }
 }

@@ -19,7 +19,7 @@ public class Rv_1Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 20;
     }
 
     public Rv_1Adapter(Activity context) {

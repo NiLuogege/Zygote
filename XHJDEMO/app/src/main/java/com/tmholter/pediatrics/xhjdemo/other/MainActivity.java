@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.tmholter.pediatrics.xhjdemo.R;
+import com.tmholter.pediatrics.xhjdemo.common.view.view.BetterRecyclerView;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     SimpleViewPagerIndicator mIndicator;
 
     private static final int RC_CAMERA_AND_WIFI = 0x01;//这个就是RequestCode
-    private RecyclerView rv;
+    private BetterRecyclerView rv;
     private MainActivity context;
     private String[] mTitles = new String[]{"简介", "评价", "相关"};
     private LinearLayoutManager mLinearLayoutManager;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
         this.context = this;
 
-        rv = (RecyclerView) findViewById((R.id.rv));
+        rv = (BetterRecyclerView) findViewById((R.id.rv));
 
         RvAdapter rvAdapter = new RvAdapter(context);
         rv.setAdapter(rvAdapter);
