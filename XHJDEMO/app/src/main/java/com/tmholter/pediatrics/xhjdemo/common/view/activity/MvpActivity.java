@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +12,7 @@ import com.tmholter.pediatrics.xhjdemo.R;
 import com.tmholter.pediatrics.xhjdemo.common.presentation.adapter.MVPAdapter;
 import com.tmholter.pediatrics.xhjdemo.common.presentation.presenter.MVPPresenter;
 import com.tmholter.pediatrics.xhjdemo.common.presentation.presenter.impl.MVPPresenterImpl;
+import com.tmholter.pediatrics.xhjdemo.common.view.view.BetterRecyclerView;
 import com.zhy.adapter.recyclerview.wrapper.HeaderAndFooterWrapper;
 import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
 
@@ -32,7 +32,7 @@ public class MvpActivity extends AppCompatActivity implements MVPPresenter.View 
     @Bind(R.id.tv)
     TextView tv;
     @Bind(R.id.rv)
-    RecyclerView rv;
+    BetterRecyclerView rv;
 
     private MVPPresenter.Presenter mMvpPresenter;
 
