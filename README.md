@@ -23,3 +23,5 @@ MVP架构,easyPermission,等的使用方法
 9.添加了下拉刷新的 ScollView PullToRefershScollViewActivity 中 ,PullScrollView 控件中 封装了 自动下拉刷新功能
 
 10.优化了RecycleView 竖向 横向嵌套 滑动问题  也在MainActivity中 的 BetterRecyclerView 
+
+11.RecycleView共享缓存,使用PagerTitleStrip当做ViewPagerIndicator 在RecycleViewpollActivity 中
