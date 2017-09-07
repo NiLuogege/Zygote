@@ -1,39 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="MainAcitivy--> \n
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MainAcitivy--> \n
         easyPermmsion \n
         无限轮播图 \n
 揭露动画(reveal effect) \n
 可以固定在RecycleView顶部的ViewPagerIndicator "/>
 
-    <Button
-        android:id="@+id/btn_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="MVPActivity--> \n
+        <Button
+            android:id="@+id/btn_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MVPActivity--> \n
         MVP框架用RecycleView \n
 BaseAdapter \n"/>
 
-    <Button
-        android:id="@+id/btn_3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="XRecycleViewActivity --> \n
+        <Button
+            android:id="@+id/btn_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="XRecycleViewActivity --> \n
          XRecycleView 并配合使用BaseAdapter 实现列表 真的很简单\n "/>
 
-    <Button
-        android:id="@+id/btn_4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="PullToRefershScollViewActivity --> \n
+        <Button
+            android:id="@+id/btn_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PullToRefershScollViewActivity --> \n
         下拉刷新的 ScollView  封装了 自动下拉刷新功能\n "/>
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btn_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RecycleViewpollActivity --> \n
+        RecycleView共享缓存\n
+        使用PagerTitleStrip当做ViewPagerIndicator \n"/>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

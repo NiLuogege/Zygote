@@ -27,6 +27,7 @@
         <activity android:name=".common.view.activity.MvpActivity"/>
         <activity android:name=".common.view.activity.XRecycleViewActivity"/>
         <activity android:name=".common.view.activity.PullToRefershScollViewActivity"/>
+        <activity android:name=".recycleviewpool.RecycleViewpollActivity"/>
     </application>
 
 </manifest>

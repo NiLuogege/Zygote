@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 //                View childAt = rv.getChildAt(3);
                 View childAt = mLinearLayoutManager.findViewByPosition(3);
 
-//                Log.e("MainActivity", "childAt:" + childAt+" viewByPosition="+viewByPosition);
+//                Log.e("RecycleViewpollActivity", "childAt:" + childAt+" viewByPosition="+viewByPosition);
                 if (childAt != null) {
                     int top = childAt.getTop() + 80;//这里的80是因为在item_type_3中 全部商品这个textVie的高度设置为了80,如果真的要使用的话需要用dp 或者动态获取
-                    Log.e("MainActivity", "top:" + top);
+                    Log.e("RecycleViewpollActivity", "top:" + top);
                     if (top <= 0) {
                         mIndicator.setVisibility(View.VISIBLE);
                     } else {
@@ -82,9 +82,9 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     private void requestCallPhonePermission() {
         String[] perms = {Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION};
         if (EasyPermissions.hasPermissions(this, perms)) {//已经拥有
-            Log.e("MainActivity", "有权限");
+            Log.e("RecycleViewpollActivity", "有权限");
         } else {
-            Log.e("MainActivity", "没有权限");
+            Log.e("RecycleViewpollActivity", "没有权限");
             EasyPermissions.requestPermissions(this, "拍照需要摄像头权限", RC_CAMERA_AND_WIFI, perms);
         }
     }
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
      */
     @Override
     public void onPermissionsGranted(int requestCode, List<String> perms) {
-        Log.e("MainActivity", "onPermissionsGranted " + perms);
+        Log.e("RecycleViewpollActivity", "onPermissionsGranted " + perms);
     }
 
     /**
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
      */
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
-        Log.e("MainActivity", "onPermissionsDenied " + perms);
+        Log.e("RecycleViewpollActivity", "onPermissionsDenied " + perms);
 
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
             new AppSettingsDialog.Builder(this)

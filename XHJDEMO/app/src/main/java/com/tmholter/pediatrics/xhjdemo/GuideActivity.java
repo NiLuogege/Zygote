@@ -9,6 +9,7 @@ import com.tmholter.pediatrics.xhjdemo.common.view.activity.MvpActivity;
 import com.tmholter.pediatrics.xhjdemo.common.view.activity.PullToRefershScollViewActivity;
 import com.tmholter.pediatrics.xhjdemo.common.view.activity.XRecycleViewActivity;
 import com.tmholter.pediatrics.xhjdemo.other.MainActivity;
+import com.tmholter.pediatrics.xhjdemo.recycleviewpool.RecycleViewpollActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -45,5 +46,9 @@ public class GuideActivity extends AppCompatActivity {
     @OnClick(R.id.btn_4)
     public void click_4(){
         startActivity(new Intent(this, PullToRefershScollViewActivity.class));
+    }
+    @OnClick(R.id.btn_5)
+    public void click_5(){
+        startActivity(new Intent(this, RecycleViewpollActivity.class));
     }
 }
