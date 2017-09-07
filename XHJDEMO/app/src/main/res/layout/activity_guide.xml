@@ -8,7 +8,8 @@
         android:id="@+id/btn_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="easyPermmsion \n
+        android:text="MainAcitivy--> \n
+        easyPermmsion \n
         无限轮播图 \n
 揭露动画(reveal effect) \n
 可以固定在RecycleView顶部的ViewPagerIndicator "/>
@@ -17,19 +18,22 @@
         android:id="@+id/btn_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MVP框架用RecycleView \n
+        android:text="MVPActivity--> \n
+        MVP框架用RecycleView \n
 BaseAdapter \n"/>
 
     <Button
         android:id="@+id/btn_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="XRecycleView 并配合使用BaseAdapter 实现列表 真的很简单\n "/>
+        android:text="XRecycleViewActivity --> \n
+         XRecycleView 并配合使用BaseAdapter 实现列表 真的很简单\n "/>
 
     <Button
         android:id="@+id/btn_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="下拉刷新的 ScollView  封装了 自动下拉刷新功能\n "/>
+        android:text="PullToRefershScollViewActivity --> \n
+        下拉刷新的 ScollView  封装了 自动下拉刷新功能\n "/>
 
 </LinearLayout>
